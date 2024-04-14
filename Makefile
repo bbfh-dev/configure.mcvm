@@ -8,3 +8,6 @@ prod:
 
 watch:
 	reflex -s -r '\.go$$' -- make dev --always-make
+
+debug:
+	dlv debug --headless --api-version=2 --listen=127.0.0.1:43000 main.go 
