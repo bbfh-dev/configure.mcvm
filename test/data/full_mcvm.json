@@ -1,0 +1,30 @@
+{
+  "users": {},
+  "default_user": "test",
+  "profiles": {
+    "test": {
+      "version": "1.20.4",
+      "modloader": "fabric",
+      "client_type": "fabric",
+      "server_type": "fabric",
+      "instances": {
+        "example": {
+          "type": "client",
+          "datapack_folder": "/tmp/"
+        },
+        "example-client": "client",
+        "example-server": "server"
+      },
+      "packages": [
+        {
+          "id": "fabric-api",
+          "type": "repository"
+        }
+      ],
+      "package_stability": "stable"
+    }
+  },
+  "packages": [],
+  "instance_presets": {},
+  "preferences": {}
+}
