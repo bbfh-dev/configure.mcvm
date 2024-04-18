@@ -9,7 +9,15 @@ import (
 // The mcvm.json configuration file
 var MCVMConfig Config
 
-func GetMCVMFile(name string) string {
+// The ../internal/auth/db.json file
+var MCVMAuth Auth
+
+func GetConfigFile(name string) string {
 	dirs := appdir.New("mcvm")
 	return filepath.Join(dirs.UserConfig(), name)
+}
+
+func GetDataFile(path ...string) string {
+	dirs := appdir.New("mcvm")
+	return filepath.Join(dirs.UserData(), filepath.Join(path...))
 }

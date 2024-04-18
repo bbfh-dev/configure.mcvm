@@ -3,21 +3,33 @@ package widgets
 import (
 	"strings"
 
-	"github.com/bbfh-dev/configure.mcvm/ui/utils"
+	"github.com/bbfh-dev/configure.mcvm/ui/tools"
 	"github.com/charmbracelet/bubbles/help"
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
 type HelpWidget struct {
-	keys      utils.Keybinds
-	helpModel help.Model
+	Id          string
+	DefaultKeys []string
+	Keys        tools.Keybinds
+	helpModel   help.Model
 }
 
-func NewHelpWidget(keys utils.Keybinds) HelpWidget {
+func NewHelpWidget(keys tools.Keybinds) HelpWidget {
+	helpModel := help.New()
+	helpModel.ShowAll = true
+
+	var keyList []string
+	for key := range keys {
+		keyList = append(keyList, key)
+	}
+
 	return HelpWidget{
-		keys:      keys,
-		helpModel: help.New(),
+		Id:          "default",
+		DefaultKeys: keyList,
+		Keys:        keys,
+		helpModel:   helpModel,
 	}
 }
 
@@ -31,7 +43,7 @@ func (model HelpWidget) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		model.helpModel.Width = msg.Width
 	case tea.KeyMsg:
 		switch {
-		case key.Matches(msg, model.keys["help"]):
+		case key.Matches(msg, model.Keys["help"]):
 			model.helpModel.ShowAll = !model.helpModel.ShowAll
 		}
 	}
@@ -40,9 +52,8 @@ func (model HelpWidget) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (model HelpWidget) View() string {
-	var contents string
-	helpView := model.helpModel.View(model.keys)
-	height := 1 - strings.Count(contents, "\n") - strings.Count(helpView, "\n")
+	helpView := model.helpModel.View(model.Keys)
+	height := 1 - strings.Count(helpView, "\n")
 
-	return "\n" + contents + strings.Repeat("\n", max(0, height)) + helpView
+	return strings.Repeat("\n", max(0, height)) + helpView
 }

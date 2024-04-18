@@ -30,7 +30,7 @@ func (config *Config) Decode(data []byte) error {
 }
 
 func (config *Config) DecodeFromFile() error {
-	file, err := os.ReadFile(GetMCVMFile("mcvm.json"))
+	file, err := os.ReadFile(GetConfigFile("mcvm.json"))
 	if err != nil {
 		return err
 	}
@@ -53,5 +53,5 @@ func (config *Config) EncodeToFile() error {
 		return nil
 	}
 
-	return os.WriteFile(GetMCVMFile("mcvm.json"), data, 0644)
+	return os.WriteFile(GetConfigFile("mcvm.json"), data, 0644)
 }

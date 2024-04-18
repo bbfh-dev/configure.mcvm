@@ -25,6 +25,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	err = mcvm.MCVMAuth.DecodeFromFile()
+	if err != nil {
+		fmt.Printf("ERROR: %s", err)
+		os.Exit(1)
+	}
+
 	// err := mcvm.MCVMConfig.DecodeFromFile()
 
 	// err := mcvm.DecodeFromFile()
@@ -48,7 +54,7 @@ func main() {
 	// }
 	// //endregion
 
-	program := tea.NewProgram(ui.NewIndexModel(), tea.WithAltScreen())
+	program := tea.NewProgram(ui.NewIndexScreen(), tea.WithAltScreen())
 	if _, err := program.Run(); err != nil {
 		fmt.Printf("ERROR: %v", err)
 		os.Exit(1)

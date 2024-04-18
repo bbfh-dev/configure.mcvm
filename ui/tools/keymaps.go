@@ -1,4 +1,4 @@
-package utils
+package tools
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func ExtendWithDefaultKeybinds(keybinds Keybinds) Keybinds {
 		key.WithHelp("?", "toggle help"),
 	)
 	keybinds["quit"] = key.NewBinding(
-		key.WithKeys("q", "esc", "ctrl+c"),
+		key.WithKeys("q", "ctrl+c"),
 		key.WithHelp("q", "quit"),
 	)
 	return keybinds
@@ -44,29 +44,5 @@ func (keybinds Keybinds) FullHelp() [][]key.Binding {
 		}
 	}
 
-	// var index int
-	// var i int
-	// for _, value := range keybinds {
-	// 	keys[index] = append(keys[index], value)
-	// 	if i++; i > 2 {
-	// 		keys = append(keys, []key.Binding{})
-	// 		index += 1
-	// 		i = 0
-	// 	}
-	// }
-
 	return keys
-
-	// var keys []key.Binding
-	// for key, value := range keybinds {
-	// 	if key == "help" || key == "quit" {
-	// 		continue
-	// 	}
-	// 	keys = append(keys, value)
-	// }
-	//
-	// return [][]key.Binding{
-	// 	keys,
-	// 	{keybinds["help"], keybinds["quit"]},
-	// }
 }
