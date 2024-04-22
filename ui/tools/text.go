@@ -9,10 +9,12 @@ import (
 
 var dft = lipgloss.NewStyle()
 
+// Fills vertical gap with new lines
 func FillGap(height int) string {
 	return strings.Repeat("\n", max(0, height))
 }
 
+// Calculates the height and position of a scrollbar
 func ScrollBar(windowHeight int, contentHeight int, scroll int) (height int, position int) {
 	ratio := float64(windowHeight) / float64(contentHeight)
 	height = int(math.Max(float64(windowHeight)*ratio, 1))
@@ -29,6 +31,7 @@ func ScrollBar(windowHeight int, contentHeight int, scroll int) (height int, pos
 	return height, position
 }
 
+// Appends a text render with specified width
 func AppendContent(contents *[]string, text string, width int) {
 	lines := strings.Split(text, "\n")
 	for i, line := range lines {

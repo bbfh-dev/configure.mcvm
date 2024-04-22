@@ -7,6 +7,7 @@ import (
 	"github.com/bbfh-dev/configure.mcvm/cli"
 )
 
+// File at: ~/.config/mcvm/mcvm.json
 var MCVMConfig Config
 
 type Config struct {

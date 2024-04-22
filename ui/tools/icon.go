@@ -26,6 +26,7 @@ const (
 	STAR_ICON     icon = " "
 )
 
+// Prepends an icon if --icons CLI flag is on
 func WithIcon(icon icon, str string) string {
 	if cli.Flags.Icons {
 		return fmt.Sprintf("%s %s", icon, str)
@@ -34,6 +35,7 @@ func WithIcon(icon icon, str string) string {
 	return str
 }
 
+// Returns an icon if --icons CLI flag is on, otherwise the fallback string
 func IconFallback(icon icon, fallback string) string {
 	if cli.Flags.Icons {
 		return string(icon)

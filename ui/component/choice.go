@@ -1,6 +1,7 @@
 package component
 
 // An available UI option.
+//
 // Use it as a slice, first element should be the default option.
 type Choice struct {
 	id      string

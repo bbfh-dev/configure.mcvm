@@ -7,6 +7,7 @@ import (
 	"github.com/bbfh-dev/configure.mcvm/cli"
 )
 
+// File at: ~/.local/share/mcvm/internal/auth/db.json
 var MCVMAuth Auth
 
 type Auth struct {
