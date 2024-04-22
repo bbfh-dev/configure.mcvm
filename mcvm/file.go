@@ -6,18 +6,12 @@ import (
 	"github.com/emersion/go-appdir"
 )
 
-// The mcvm.json configuration file
-var MCVMConfig Config
-
-// The ../internal/auth/db.json file
-var MCVMAuth Auth
-
-func GetConfigFile(name string) string {
+func ConfigFile(path ...string) string {
 	dirs := appdir.New("mcvm")
-	return filepath.Join(dirs.UserConfig(), name)
+	return filepath.Join(dirs.UserConfig(), filepath.Join(path...))
 }
 
-func GetDataFile(path ...string) string {
+func DataFile(path ...string) string {
 	dirs := appdir.New("mcvm")
 	return filepath.Join(dirs.UserData(), filepath.Join(path...))
 }
