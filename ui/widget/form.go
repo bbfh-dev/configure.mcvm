@@ -40,7 +40,7 @@ func NewFormWidget(fields []field.Field, focused bool) FormWidget {
 				key.WithHelp("󰌑", "select"),
 			),
 			"item.exit": key.NewBinding(
-				key.WithKeys("esc"),
+				key.WithKeys("esc", "enter"),
 				key.WithHelp("esc", "exit editting"),
 			),
 		},
