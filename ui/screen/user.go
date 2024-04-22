@@ -109,7 +109,7 @@ func (screen UserScreen) Update(raw tea.Msg) (Screen, tea.Cmd) {
 		// Messages
 		for _, message := range screen.editUserWidget.Messages {
 			switch message.(type) {
-			case tools.OverflowBottom:
+			case tools.OverflowBottomMsg:
 				screen.editUserWidget = screen.editUserWidget.Blur()
 				screen.editActionsWidget = screen.editActionsWidget.Focus()
 				screen.editActionsWidget.Cursor = 0
@@ -118,12 +118,12 @@ func (screen UserScreen) Update(raw tea.Msg) (Screen, tea.Cmd) {
 		}
 		for _, message := range screen.editActionsWidget.Messages {
 			switch msg := message.(type) {
-			case tools.OverflowTop:
+			case tools.OverflowTopMsg:
 				screen.editUserWidget = screen.editUserWidget.Focus()
 				screen.editActionsWidget = screen.editActionsWidget.Blur()
 				return screen.Update(nil)
 
-			case component.SelectItem:
+			case component.SelectItemMsg:
 				switch msg.Item {
 				case "set_default":
 					config.MCVMConfig.DefaultUser = screen.editing
@@ -162,26 +162,26 @@ func (screen UserScreen) Update(raw tea.Msg) (Screen, tea.Cmd) {
 		// Messages
 		for _, message := range screen.userListWidget.Messages {
 			switch msg := message.(type) {
-			case tools.OverflowBottom:
+			case tools.OverflowBottomMsg:
 				screen.userListWidget = screen.userListWidget.Blur()
 				screen.actionsWidget = screen.actionsWidget.Focus()
 				screen.actionsWidget.Cursor = 0
 				return screen.Update(nil)
 
-			case component.SelectItem:
+			case component.SelectItemMsg:
 				screen.editing = msg.Item
 				screen.editUserWidget.Fields[0].Type = screen.editUserWidget.Fields[0].Type.Set(msg.Item)
 			}
 		}
 		for _, message := range screen.actionsWidget.Messages {
 			switch msg := message.(type) {
-			case tools.OverflowTop:
+			case tools.OverflowTopMsg:
 				screen.userListWidget = screen.userListWidget.Focus()
 				screen.actionsWidget = screen.actionsWidget.Blur()
 				screen.userListWidget.Cursor = screen.userListWidget.List.Size() - 1
 				return screen.Update(nil)
 
-			case component.SelectItem:
+			case component.SelectItemMsg:
 				switch msg.Item {
 				case "new":
 					screen.editing = "unnamed"

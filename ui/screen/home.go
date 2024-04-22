@@ -77,7 +77,7 @@ func (screen HomeScreen) Update(raw tea.Msg) (Screen, tea.Cmd) {
 
 	for _, message := range screen.radioWidget.Messages {
 		switch msg := message.(type) {
-		case component.SelectItem:
+		case component.SelectItemMsg:
 			switch msg.Item {
 			case "users":
 				screen.messages = append(screen.messages, GoToScreen{Tag: USER_SCREEN})

@@ -74,14 +74,14 @@ func (widget FormWidget) Update(raw tea.Msg) (tea.Model, tea.Cmd) {
 			if widget.Cursor > 0 {
 				widget.Cursor -= 1
 			} else {
-				widget.Messages = append(widget.Messages, tools.OverflowTop{})
+				widget.Messages = append(widget.Messages, tools.OverflowTopMsg{})
 			}
 
 		case key.Matches(msg, widget.Keys["move.down"]):
 			if widget.Cursor < len(widget.Fields)-1 {
 				widget.Cursor += 1
 			} else {
-				widget.Messages = append(widget.Messages, tools.OverflowBottom{})
+				widget.Messages = append(widget.Messages, tools.OverflowBottomMsg{})
 			}
 
 		case key.Matches(msg, widget.Keys["item.select"]):

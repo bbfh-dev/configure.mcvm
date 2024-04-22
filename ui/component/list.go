@@ -1,14 +1,19 @@
 package component
 
-type SelectItem struct {
+type SelectItemMsg struct {
 	Item string
 }
 
+// A generic list
 type List interface {
+	// Returns items to be iterated over
 	Items() []Item
+
+	// The size of the list
 	Size() int
 }
 
+// A static list
 type LiteralList struct {
 	items []Item
 }
